@@ -18,7 +18,6 @@
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
     "@sanity/studio-hints",
-    "media"
   ],
   "parts": [
     {
