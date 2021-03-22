@@ -17,10 +17,10 @@
 
 .parked {
   transition-timing-function: ease-in-out;
-  transition-duration: 699ms !important;
+  transition-duration: 300ms !important;
 
   @nest & span {
     transition-timing-function: inherit;
-    transition-duration: 700ms !important;
+    transition-duration: 320ms !important;
   }
 }

@@ -42,6 +42,7 @@ export const FloatingText = (props: FloatingTextProps) => {
       className={styles.wrapper}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleMouseEnter}
     >
       {letters}
     </span>
