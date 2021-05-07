@@ -2,4 +2,13 @@
 
 .wrapper {
   display: inline-block;
+
+  @nest & > span {
+    display: inline-block;
+  }
+}
+
+.stackWords {
+  display: flex;
+  flex-direction: column;
 }

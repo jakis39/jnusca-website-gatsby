@@ -11,7 +11,7 @@ function randomDirection() {
 //   return Math.random() * factor;
 // }
 
-function randomIncrement(min = 4, max= 10) {
+function randomIncrement(min = 4, max = 10) {
   return Math.random() * (max - min) + min;
 }
 
@@ -84,22 +84,20 @@ export const FloatingLetter = (props: FloatingLetterProps) => {
     let timer;
     if (park && rotationDistance !== 0) {
       setAllDistances(0);
-    }
-    else if (!park) {
+    } else if (!park) {
       timer = setInterval(() => {
         incrementAllDistances();
       }, intervalTime);
       if (rotationDistance === 0) {
-        setTimeout(() =>{
-
+        setTimeout(() => {
           incrementAllDistances();
-        }, 1000)
+        }, 1000);
       }
     }
 
     return () => {
       clearInterval(timer);
-    }
+    };
   }, [park, rotationDistance, offsetXDistance, offsetYDistance]);
 
   // React.useEffect(() => {
@@ -123,25 +121,26 @@ export const FloatingLetter = (props: FloatingLetterProps) => {
 
   return (
     <>
-    {/* {offsetX.offset}
+      {/* {offsetX.offset}
     {offsetY.offset}
     {rotation.offset} */}
-    <span
-      className={`${styles.root} ${park ? styles.parked : ''}`}
-      style={{
-        transform: `translateX(${offsetXDirection * offsetXDistance}px) translateY(${offsetYDirection * offsetYDistance}px)`,
-        transitionDuration: `${intervalTime}ms`
-      }}
-    >
       <span
+        className={`${styles.root} ${park ? styles.parked : ""}`}
         style={{
-          transform: `rotateZ(${rotationDirection * rotationDistance}deg)`,
+          transform: `translateX(${offsetXDirection *
+            offsetXDistance}px) translateY(${offsetYDirection * offsetYDistance}px)`,
           transitionDuration: `${intervalTime}ms`
         }}
       >
-        {children}
+        <span
+          style={{
+            transform: `rotateZ(${rotationDirection * rotationDistance}deg)`,
+            transitionDuration: `${intervalTime}ms`
+          }}
+        >
+          {children}
+        </span>
       </span>
-    </span>
     </>
   );
 };

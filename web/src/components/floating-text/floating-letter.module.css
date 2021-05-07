@@ -16,11 +16,11 @@
 }
 
 .parked {
-  transition-timing-function: ease-in-out;
-  transition-duration: 300ms !important;
+  transition-timing-function: cubic-bezier(0.96, -0.02, 0.88, 0.46);
+  transition-duration: 400ms !important;
 
   @nest & span {
     transition-timing-function: inherit;
-    transition-duration: 320ms !important;
+    transition-duration: 400ms !important;
   }
 }

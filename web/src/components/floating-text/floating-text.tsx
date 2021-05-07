@@ -5,18 +5,23 @@ import { FloatingLetter } from "./floating-letter";
 import * as styles from "./floating-text.module.css";
 
 export interface FloatingTextProps {
-  words: string;
   parked?: boolean;
+  stackWords: boolean;
   children?: string;
 }
 
 export const FloatingText = (props: FloatingTextProps) => {
-  const { words, parked = false, children } = props;
+  const { parked = false, stackWords = false, children } = props;
   const [park, setPark] = React.useState<boolean>(parked);
+  const [wordList, setWordList] = React.useState<string[]>([]);
 
   React.useEffect(() => {
     setPark(parked);
   }, [parked]);
+
+  React.useEffect(() => {
+    setWordList(children?.split(" "));
+  }, [children, setWordList]);
 
   function handleMouseEnter() {
     setPark(true);
@@ -28,23 +33,24 @@ export const FloatingText = (props: FloatingTextProps) => {
     }
   }
 
-  React.Children.map(children, (child, index) => {
-    console.log(child, index);
-  });
-
-  const letters = [];
-  for (let char of children) {
-    letters.push(<FloatingLetter park={park}>{char}</FloatingLetter>);
-  }
-
   return (
     <span
-      className={styles.wrapper}
+      className={`${styles.wrapper} ${stackWords ? styles.stackWords : ""}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleMouseEnter}
     >
-      {letters}
+      {stackWords
+        ? wordList.map((word, index) => (
+            <>
+              <span>
+                {word.split("").map(char => (
+                  <FloatingLetter park={park}>{char}</FloatingLetter>
+                ))}
+              </span>
+            </>
+          ))
+        : children.split("").map(char => <FloatingLetter park={park}>{char}</FloatingLetter>)}
     </span>
   );
 };

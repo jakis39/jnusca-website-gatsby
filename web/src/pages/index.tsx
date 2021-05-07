@@ -11,9 +11,11 @@ import ProjectPreviewGrid from "../components/project-preview-grid";
 import SEO from "../components/seo";
 import Layout from "../containers/layout";
 import { FloatingText } from "../components/floating-text";
+import { cn } from "../lib/helpers";
 
 import * as styles from "./index.module.css";
 import { title1 } from "../components/typography.module.css";
+import useWindowDimensions from "../lib/useWindowDimensions";
 
 export const query = graphql`
   query IndexPageQuery {
@@ -65,6 +67,10 @@ export const query = graphql`
 
 const IndexPage = props => {
   const { data, errors } = props;
+  const [parked, setParked] = React.useState(false);
+  const { isSmall } = useWindowDimensions();
+
+  console.log(data);
 
   if (errors) {
     return (
@@ -87,8 +93,6 @@ const IndexPage = props => {
     );
   }
 
-  const [parked, setParked] = React.useState(false);
-
   function toggleText() {
     setParked(!parked);
   }
@@ -97,13 +101,13 @@ const IndexPage = props => {
     <Layout>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
       <Container grow>
-        <div
-          className={`${title1} ${styles.root}`}
-          style={{ fontSize: "80px", fontFamily: "Bungee Shade", color: "#6874e8" }}
-        >
-          <FloatingText parked={parked} words="Jake Nusca">
-            Jake Nusca
-          </FloatingText>
+        <div className={styles.root}>
+          <span className={cn(title1, styles.name)}>
+            <FloatingText parked={parked} stackWords={isSmall}>
+              Jake Nusca
+            </FloatingText>
+          </span>
+          {/* <div className={styles.hint}>⬑ move your mouse here ⬏</div> */}
           {/* <button onClick={toggleText}>{parked ? "start" : "park"}</button> */}
         </div>
       </Container>
