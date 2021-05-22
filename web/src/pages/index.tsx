@@ -7,7 +7,6 @@ import {
 } from "../lib/helpers";
 import Container from "../components/container";
 import GraphQLErrorList from "../components/graphql-error-list";
-import ProjectPreviewGrid from "../components/project-preview-grid";
 import SEO from "../components/seo";
 import Layout from "../containers/layout";
 import { FloatingText } from "../components/floating-text";
@@ -24,15 +23,21 @@ export const query = graphql`
       description
       keywords
     }
-    projects: allSanitySampleProject(
-      limit: 6
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+    jobs: allSanityJob(
+      limit: 100
+      sort: { fields: [startedAt], order: DESC }
+      filter: { title: { ne: null }, companyName: { ne: null } }
     ) {
       edges {
         node {
           id
-          mainImage {
+          title
+          companyName
+          startedAt
+          endedAt
+          isCurrent
+          _rawBody
+          companyLogo {
             crop {
               _key
               _type
@@ -53,11 +58,6 @@ export const query = graphql`
               _id
             }
             alt
-          }
-          title
-          _rawExcerpt
-          slug {
-            current
           }
         }
       }
