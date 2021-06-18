@@ -12,7 +12,8 @@ body {
   background: var(--color-white);
   color: var(--color-black);
   margin: 0;
-  background: linear-gradient(125deg, #a8ff78, #78ffd6);
+  background: linear-gradient(125deg, var(--gradient-1), var(--gradient-2));
+  overflow: auto;
 }
 
 html,

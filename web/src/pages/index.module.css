@@ -1,14 +1,15 @@
 .root {
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center; */
+  /* align-items: center; */
 
   @nest & .name {
     font-family: "Bungee Shade";
     font-size: 80px;
     color: #6874e8;
+    margin-bottom: 36px;
   }
 
   @nest & .hint {

@@ -5,13 +5,17 @@
   --font-family-title: "Bungee Shade", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family-sans: "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
-  --color-black: #202123;
+  /* --color-black: #202123;
   --color-dark-gray: #32373e;
   --color-gray: #697a90;
   --color-light-gray: #b4bcc7;
   --color-very-light-gray: #e7ebed;
   --color-white: #fff;
-  --color-accent: #156dff;
+  --color-accent: #156dff; */
+
+  --color-accent: #6874e8;
+  --gradient-1: #a8ff78;
+  --gradient-2: #78ffd6;
 
   /* Typography */
   --unit: 16;

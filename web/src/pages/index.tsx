@@ -15,6 +15,8 @@ import { cn } from "../lib/helpers";
 import * as styles from "./index.module.css";
 import { title1 } from "../components/typography.module.css";
 import useWindowDimensions from "../lib/useWindowDimensions";
+import { AboutSection } from "../components/sections/about-section/about-section";
+import { WorkSection } from "../components/sections/work-section/work-section";
 
 export const query = graphql`
   query IndexPageQuery {
@@ -81,11 +83,11 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site;
-  const projectNodes = (data || {}).projects
-    ? mapEdgesToNodes(data.projects)
-        .filter(filterOutDocsWithoutSlugs)
-        .filter(filterOutDocsPublishedInTheFuture)
-    : [];
+  const jobs = (data || {}).jobs
+    ? mapEdgesToNodes(data.jobs)
+    : // .filter(filterOutDocsWithoutSlugs)
+      // .filter(filterOutDocsPublishedInTheFuture)
+      [];
 
   if (!site) {
     throw new Error(
@@ -103,12 +105,17 @@ const IndexPage = props => {
       <Container grow>
         <div className={styles.root}>
           <span className={cn(title1, styles.name)}>
-            <FloatingText parked={parked} stackWords={isSmall}>
+            <FloatingText
+              parked
+              // parked={parked}
+              stackWords={isSmall}
+            >
               Jake Nusca
             </FloatingText>
           </span>
-          {/* <div className={styles.hint}>⬑ move your mouse here ⬏</div> */}
-          {/* <button onClick={toggleText}>{parked ? "start" : "park"}</button> */}
+
+          <AboutSection content={site.description} />
+          <WorkSection jobs={jobs} />
         </div>
       </Container>
     </Layout>

@@ -1,4 +1,4 @@
-@import '../styles/custom-media.css';
+@import "../styles/custom-media.css";
 
 :root {
   --base-unit: 17;
@@ -20,30 +20,43 @@
   --font-title1-line-height: calc(56 / 44);
 }
 
-
-
 /*
  * Statically sized elements
  */
 
+h1,
 .title1 {
   font-size: var(--font-title1-size);
   line-height: var(--font-title1-line-height);
+  /* font-weight: normal; */
 }
 
+h2,
 .title2 {
   font-size: var(--font-title2-size);
   line-height: var(--font-title2-line-height);
+  font-weight: 500;
 }
 
+h3,
 .title3 {
   font-size: var(--font-title3-size);
   line-height: var(--font-title3-line-height);
+  font-weight: normal;
 }
 
+h4,
 .large {
   font-size: var(--font-large-size);
   line-height: var(--font-large-line-height);
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
 }
 
 .base {
@@ -61,8 +74,6 @@
   line-height: var(--font-micro-line-height);
   text-transform: uppercase;
 }
-
-
 
 /*
  * Responsively sized elements
